@@ -1,0 +1,246 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:.8rem 0}
+.top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.pill{padding:4px 12px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid var(--color-border-primary);color:var(--color-text-secondary);background:var(--color-background-secondary);transition:all .15s;font-family:var(--font-sans)}
+.pill.on{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.cnt{font-size:11px;color:var(--color-text-tertiary)}
+.list{display:flex;flex-direction:column;gap:9px}
+.card{border:1px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:13px 15px;cursor:pointer;transition:border-color .15s,background .15s;background:var(--color-background-secondary)}
+.card:hover{border-color:var(--color-border-primary);background:var(--color-background-primary)}
+.card.sel{border-color:var(--color-text-primary);background:var(--color-background-primary)}
+.crow{display:flex;align-items:flex-start;gap:10px;margin-bottom:5px}
+.ctitle{font-size:13px;font-weight:500;color:var(--color-text-primary);line-height:1.4;flex:1}
+.brow{display:flex;gap:5px;flex-wrap:wrap;flex-shrink:0}
+.b{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500;white-space:nowrap}
+.chook{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+
+/* detail */
+.det{margin-top:12px;border:1px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:15px 17px;background:var(--color-background-primary)}
+.dtitle{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px;line-height:1.4}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:10px}
+@media(max-width:480px){.g2,.g3{grid-template-columns:1fr}}
+.db{padding:9px 11px;border-radius:var(--border-radius-md);border:1px solid var(--color-border-tertiary)}
+.dl{font-size:10px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.dv{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.parts{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.part{font-size:11px;padding:3px 9px;border-radius:8px;border:1px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+.diff-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.diff-label{font-size:11px;color:var(--color-text-tertiary);width:80px;flex-shrink:0}
+.stars{display:flex;gap:3px}
+.star{width:12px;height:12px;border-radius:2px}
+.star.on{background:#EF9F27}
+.star.off{background:var(--color-border-tertiary)}
+.unique-box{padding:9px 11px;border-radius:var(--border-radius-md);background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);font-size:12px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:10px}
+.ul2{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-tertiary);margin-bottom:3px}
+.ask-btn{padding:7px 13px;border-radius:var(--border-radius-md);font-size:12px;border:1px solid var(--color-border-primary);background:var(--color-background-secondary);color:var(--color-text-primary);cursor:pointer;font-family:var(--font-sans);transition:background .15s}
+.ask-btn:hover{background:var(--color-background-tertiary)}
+.hidden{display:none!important}
+.impact-chip{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500}
+</style>
+<div class="wrap">
+<div class="top">
+  <div class="filters" id="fbar">
+    <button class="pill on" data-f="all">All</button>
+    <button class="pill" data-f="env">Environment</button>
+    <button class="pill" data-f="social">Society</button>
+    <button class="pill" data-f="energy">Energy</button>
+    <button class="pill" data-f="safety">Safety</button>
+  </div>
+  <span class="cnt" id="cnt">10 ideas</span>
+</div>
+<div class="list" id="list"></div>
+<div class="det hidden" id="det"></div>
+</div>
+<script>
+const C={
+  env:   {bg:"#EAF3DE",color:"#3B6D11",label:"Environment"},
+  social:{bg:"#EEEDFE",color:"#3C3489",label:"Society"},
+  energy:{bg:"#FAEEDA",color:"#854F0B",label:"Energy"},
+  safety:{bg:"#FAECE7",color:"#993C1D",label:"Safety"},
+};
+const DIFF_LABEL=["","Very easy","Easy","Moderate","Moderate+","Challenging"];
+
+const P=[
+  {
+    id:1,cat:"env",sdg:"SDG 11",
+    title:"Acoustic pothole detector for city roads",
+    hook:"Clip a microphone + vibration sensor to a bicycle. A microcontroller runs a simple FFT and flags pothole-like impact signatures. Locations are tagged via a GPS module and plotted on a web map.",
+    cs:"FFT signal processing, GPS data parsing, simple web dashboard with map plotting (Leaflet.js)",
+    elec:"ADXL345 accelerometer, microphone module, Arduino Uno, NEO-6M GPS, SD card for logging",
+    impact:"Helps municipalities find road damage faster — directly improves urban infrastructure",
+    unique:"Most road monitoring uses expensive car-mounted sensors or manual surveys. A bicycle-borne embedded system that logs acoustic + vibration signatures is genuinely novel at this level.",
+    parts:["Arduino Uno","ADXL345","Mic module","NEO-6M GPS","SD card module","9V battery"],
+    diff:3,cost:"₹1,200–1,800"
+  },
+  {
+    id:2,cat:"energy",sdg:"SDG 7",
+    title:"Phantom load killer for household power strips",
+    hook:"Most appliances consume power even when off ('phantom load'). A current sensor monitors each socket; a microcontroller cuts power to sockets drawing below a threshold. An LED panel shows live savings.",
+    cs:"Current threshold logic, running average filter in code, serial monitor/LCD display of saved watt-hours",
+    elec:"ACS712 current sensors, relay modules, Arduino, 16×2 LCD, basic power circuit",
+    impact:"Household phantom loads account for 5–10% of home electricity bills. Automatically cutting them saves energy with zero user effort.",
+    unique:"Smart plugs exist commercially, but building one from scratch that works across a multi-socket strip with per-socket monitoring is uncommon as a student project.",
+    parts:["Arduino Uno","ACS712 ×4","4-channel relay","LCD 16×2","Strip socket board"],
+    diff:2,cost:"₹900–1,400"
+  },
+  {
+    id:3,cat:"safety",sdg:"SDG 11",
+    title:"Stray animal highway collision alert system",
+    hook:"PIR + ultrasonic sensors along a model road section detect animal-sized movement at night. The system flashes high-intensity LEDs and triggers a buzzer to warn approaching 'vehicles' (represented by a moving toy car on a track).",
+    cs:"Multi-sensor fusion logic (ignore small animals, flag large ones), state machine in firmware, Bluetooth serial logging",
+    elec:"PIR sensor, HC-SR04 ultrasonic, LED array driver, IR proximity sensors, Arduino Nano",
+    impact:"Stray animal road accidents kill thousands every year in India. A low-cost embedded alert system on rural highways addresses a very real and ignored problem.",
+    unique:"Traffic sensors exist but none specifically fuse PIR + ultrasonic to discriminate animal size and trigger directional road warnings — unusual combination for a mini project.",
+    parts:["Arduino Nano","PIR ×2","HC-SR04 ×2","LED strip","Buzzer","12V adapter"],
+    diff:2,cost:"₹700–1,100"
+  },
+  {
+    id:4,cat:"env",sdg:"SDG 11",
+    title:"Real-time classroom noise pollution logger with heatmap",
+    hook:"A sound level sensor logs dB readings every 10 seconds with a timestamp. A Python script on a connected laptop converts the log into a time-of-day heatmap showing the noisiest periods in a classroom or hostel corridor.",
+    cs:"Serial data reading in Python, Pandas-based time aggregation, Matplotlib/Seaborn heatmap generation",
+    elec:"MAX4466 sound sensor, Arduino Uno, RTC module (DS3231), USB serial connection",
+    impact:"Noise pollution data can drive policy — quieter study/sleep environments improve student wellbeing and concentration.",
+    unique:"Commercial noise loggers exist but a DIY embedded system that produces a clean time-of-day heatmap from raw sensor data is genuinely novel as a mini project deliverable.",
+    parts:["Arduino Uno","MAX4466","DS3231 RTC","USB cable","Laptop for dashboard"],
+    diff:2,cost:"₹600–900"
+  },
+  {
+    id:5,cat:"energy",sdg:"SDG 7",
+    title:"Smart fan speed controller based on CO₂ concentration",
+    hook:"A CO₂ sensor in a classroom detects occupancy level indirectly (more people = more CO₂). The fan speed is automatically set via PWM — high when room is full, off when empty. No manual switches needed.",
+    cs:"PWM control algorithm, CO₂ level thresholds, UART sensor interface, optional serial data logging",
+    elec:"MH-Z19 CO₂ sensor, N-channel MOSFET, DC fan, Arduino, 5V power supply",
+    impact:"Fans left on in empty rooms waste significant electricity in colleges. CO₂-driven automation reduces energy use while keeping occupied rooms comfortable.",
+    unique:"PIR-based fan controllers are common. Using CO₂ as the proxy for occupancy density (not just presence/absence) and mapping it to continuous PWM fan speed is a distinct and smarter approach.",
+    parts:["Arduino Uno","MH-Z19B CO₂ sensor","IRFZ44N MOSFET","DC fan 12V","OLED display"],
+    diff:3,cost:"₹1,000–1,500"
+  },
+  {
+    id:6,cat:"social",sdg:"SDG 9",
+    title:"Low-cost braille character display using solenoid actuators",
+    hook:"6 solenoids arranged in a 2×3 braille grid are driven by a microcontroller. Type any letter on a serial terminal and the correct braille dot pattern physically pops up. A simple lookup table in firmware does the conversion.",
+    cs:"Braille ASCII lookup table, serial input parsing, character-to-bitmask mapping in C/Python",
+    elec:"5V push solenoids ×6, ULN2003 driver IC, Arduino, flyback diodes, 3D-printed dot plate",
+    impact:"Refreshable braille displays cost ₹50,000+. A DIY proof-of-concept demonstrates the core mechanism at under ₹2,000 — important for accessibility research in India.",
+    unique:"Most student assistive tech projects use audio. A physical electromechanical braille cell built from discrete solenoids with a firmware-driven lookup table is rare and impressive.",
+    parts:["Arduino Uno","Push solenoids ×6","ULN2003 ×2","Flyback diodes","3D printed plate"],
+    diff:3,cost:"₹1,500–2,200"
+  },
+  {
+    id:7,cat:"safety",sdg:"SDG 13",
+    title:"Flood early warning node using water level + LoRa radio",
+    hook:"A float sensor and a capacitive water level sensor measure rising water at a river bank model. When a threshold is crossed, an Arduino transmits a wireless alert via LoRa to a receiver node 1–2 km away, which triggers an alarm.",
+    cs:"LoRa packet framing, threshold alert state machine, receiver serial decoder, optional web alert via ESP32",
+    elec:"HC-SR04 (water level), SX1278 LoRa module, Arduino, LED + buzzer at receiver, 3.7V LiPo",
+    impact:"Rural flood warnings save lives. LoRa reaches kilometres with no SIM card or internet — ideal for remote areas with no connectivity.",
+    unique:"Most student flood projects use Wi-Fi or GSM which need a network. Using LoRa for off-grid long-range alerting in a first-year project is uncommon and solves a real rural India problem.",
+    parts:["Arduino Nano ×2","SX1278 LoRa ×2","HC-SR04","Float sensor","LiPo battery","Buzzer"],
+    diff:3,cost:"₹1,200–1,800"
+  },
+  {
+    id:8,cat:"env",sdg:"SDG 13",
+    title:"Solar panel health monitor with dust degradation analysis",
+    hook:"A light-dependent resistor and a voltage divider measure a small solar panel's open-circuit voltage and short-circuit current. A microcontroller tracks efficiency drop over days. A Python dashboard shows how dust accumulation degrades output.",
+    cs:"Efficiency calculation (P=IV), time-series data storage in CSV, line graph plotting in Python/Excel, alert if efficiency drops below threshold",
+    elec:"LDR, INA219 power monitor IC, Arduino, RTC, SD card logger, small 5V solar panel",
+    impact:"Dirty solar panels lose 20–30% efficiency. A low-cost monitor tells users exactly when cleaning is needed, maximising renewable energy output.",
+    unique:"Solar monitoring systems exist at industrial scale. A cheap embedded system that specifically correlates efficiency drop with time-since-cleaning for individual panels is novel at student level.",
+    parts:["Arduino Uno","INA219 IC","LDR","DS3231 RTC","SD card","5V solar panel"],
+    diff:2,cost:"₹800–1,200"
+  },
+  {
+    id:9,cat:"social",sdg:"SDG 11",
+    title:"Crowd density estimator for public queues using IR beam array",
+    hook:"A row of IR TX/RX pairs across a doorway counts people entering and exiting, maintaining a live count. An ESP8266 pushes the count to a simple webpage. When count exceeds a limit, a red LED signals 'queue full'.",
+    cs:"Up/down counter logic, debounce algorithm, HTTP server on ESP8266, simple webpage with live number",
+    elec:"IR transmitter/receiver pairs ×4, comparator circuit (LM358), ESP8266 NodeMCU, RGB LED, 5V supply",
+    impact:"Helps manage crowding at ration shops, hospital queues, canteens — relevant daily infrastructure in Indian cities.",
+    unique:"Most crowd counters use cameras + heavy CV models. A pure hardware beam-array approach with a lightweight Wi-Fi dashboard is simpler, cheaper, and privacy-preserving — an underexplored angle.",
+    parts:["ESP8266 NodeMCU","IR TX/RX pairs ×4","LM358 IC","RGB LED","5V supply"],
+    diff:2,cost:"₹500–900"
+  },
+  {
+    id:10,cat:"energy",sdg:"SDG 7",
+    title:"Piezoelectric footstep energy harvester with harvested joule counter",
+    hook:"Piezoelectric discs under a floor tile generate micro-voltages when stepped on. A circuit rectifies and stores charge in a supercapacitor. A microcontroller measures voltage, calculates joules harvested per step, and displays a running total on an OLED.",
+    cs:"Voltage-to-energy calculation (E=½CV²), cumulative energy tracking, OLED display driver code",
+    elec:"Piezo disc buzzers ×8, bridge rectifier, supercapacitor, Arduino Nano, OLED 0.96″, ADS1115 ADC",
+    impact:"Demonstrates the concept of recovering wasted footstep energy — educational for sustainable energy awareness and scalable to corridors, stations, and malls.",
+    unique:"Piezo energy harvesting is researched at university level but a clean, well-instrumented mini project that quantifies every joule harvested per step with a display is rare in first-year portfolios.",
+    parts:["Piezo discs ×8","Bridge rectifier","Supercapacitor","Arduino Nano","OLED","ADS1115"],
+    diff:3,cost:"₹700–1,100"
+  }
+];
+
+let af="all",sid=null;
+
+function stars(n,max=5){
+  let s="";
+  for(let i=1;i<=max;i++) s+=`<div class="star ${i<=n?'on':'off'}"></div>`;
+  return s;
+}
+
+function render(){
+  const filtered=af==="all"?P:P.filter(p=>p.cat===af);
+  document.getElementById("cnt").textContent=`${filtered.length} idea${filtered.length!==1?"s":""}`;
+  const list=document.getElementById("list");
+  list.innerHTML="";
+  filtered.forEach(p=>{
+    const c=C[p.cat];
+    const sc={bg:"#E6F1FB",color:"#185FA5"};
+    const card=document.createElement("div");
+    card.className="card"+(sid===p.id?" sel":"");
+    card.innerHTML=`
+      <div class="crow">
+        <div class="ctitle">${p.title}</div>
+        <div class="brow">
+          <span class="b" style="background:${c.bg};color:${c.color}">${c.label}</span>
+          <span class="b" style="background:${sc.bg};color:${sc.color}">${p.sdg}</span>
+        </div>
+      </div>
+      <div class="chook">${p.hook}</div>
+    `;
+    card.onclick=()=>{sid=sid===p.id?null:p.id;render()};
+    list.appendChild(card);
+  });
+  renderDet();
+}
+
+function renderDet(){
+  const det=document.getElementById("det");
+  if(!sid){det.classList.add("hidden");return}
+  const p=P.find(x=>x.id===sid);
+  if(!p){det.classList.add("hidden");return}
+  det.classList.remove("hidden");
+  det.innerHTML=`
+    <div class="dtitle">${p.title}</div>
+    <div class="g3">
+      <div class="db"><div class="dl">CS work involved</div><div class="dv">${p.cs}</div></div>
+      <div class="db"><div class="dl">Electronics used</div><div class="dv">${p.elec}</div></div>
+      <div class="db"><div class="dl">Real-world impact</div><div class="dv">${p.impact}</div></div>
+    </div>
+    <div class="unique-box"><div class="ul2">Why it's unique</div>${p.unique}</div>
+    <div class="dl" style="margin-bottom:5px">Components needed</div>
+    <div class="parts">${p.parts.map(pt=>`<span class="part">${pt}</span>`).join("")}</div>
+    <div class="diff-row"><span class="diff-label">Difficulty</span><div class="stars">${stars(p.diff)}</div><span style="font-size:11px;color:var(--color-text-tertiary);margin-left:4px">${DIFF_LABEL[p.diff]}</span></div>
+    <div class="diff-row" style="margin-top:-4px"><span class="diff-label">Est. cost</span><span style="font-size:12px;color:var(--color-text-secondary)">${p.cost}</span></div>
+    <button class="ask-btn" onclick="sendPrompt('Give me a full step-by-step guide to build the mini project: ${p.title.replace(/'/g,"\\'")} — circuit diagram description, code walkthrough, components list with specs, and how to present it.')">How to build this step by step →</button>
+  `;
+}
+
+document.getElementById("fbar").addEventListener("click",e=>{
+  const btn=e.target.closest("[data-f]");
+  if(!btn)return;
+  af=btn.dataset.f;sid=null;
+  document.querySelectorAll("[data-f]").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  render();
+});
+
+render();
+</script>
