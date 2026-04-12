@@ -80,6 +80,23 @@ body {
   border-color: #eaf0ff;
 }
 
+/* Featured pill – amber/gold style */
+.pill-featured {
+  border-color: #c9922a;
+  color: #f5c96a;
+  background: #1e1608;
+}
+.pill-featured:hover {
+  border-color: #f0b429;
+  color: #ffe08a;
+  background: #2a1f06;
+}
+.pill-featured.on {
+  background: #f5c96a;
+  color: #2a1500;
+  border-color: #f5c96a;
+}
+
 .cnt {
   font-size: 12px;
   color: var(--text-3);
@@ -97,8 +114,9 @@ body {
   border-radius: var(--r-lg);
   padding: 14px 16px;
   cursor: pointer;
-  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
   background: var(--surface-2);
+  position: relative;
 }
 
 .card:hover {
@@ -110,6 +128,43 @@ body {
 .card.sel {
   border-color: #90b3ff;
   background: #1b2d52;
+}
+
+/* Featured card special styling */
+.card.featured-card {
+  border-color: #6b4c10;
+  background: linear-gradient(135deg, #1a1508 0%, #111a2d 60%);
+  box-shadow: 0 0 0 1px #4a3408, inset 0 0 30px #f5c96a08;
+}
+
+.card.featured-card:hover {
+  border-color: #c9922a;
+  background: linear-gradient(135deg, #231d07 0%, #1a2741 60%);
+  box-shadow: 0 0 12px #f5c96a22, 0 0 0 1px #7a5c14;
+  transform: translateY(-2px);
+}
+
+.card.featured-card.sel {
+  border-color: #f0b429;
+  background: linear-gradient(135deg, #2a1f06 0%, #1b2d52 60%);
+  box-shadow: 0 0 16px #f5c96a30, 0 0 0 1px #c9922a;
+}
+
+/* Featured badge in top-right corner of card */
+.featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f5c96a22, #f0b42911);
+  border: 1px solid #6b4c10;
+  color: #f5c96a;
+  flex-shrink: 0;
 }
 
 .crow {
@@ -132,6 +187,7 @@ body {
   gap: 6px;
   flex-wrap: wrap;
   flex-shrink: 0;
+  align-items: center;
 }
 
 .b {
@@ -291,6 +347,123 @@ body {
 .hidden { display: none !important; }
 .impact-chip { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
 
+/* ── Component Pricing Table ────────────────────────── */
+.price-section {
+  margin-top: 14px;
+  border: 1px solid #4a3408;
+  border-radius: var(--r-lg);
+  background: linear-gradient(135deg, #1a150800 0%, #1a1508 100%);
+  overflow: hidden;
+}
+
+.price-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, #f5c96a18, transparent);
+  border-bottom: 1px solid #4a3408;
+}
+
+.price-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: #f5c96a;
+}
+
+.price-updated {
+  font-size: 10px;
+  color: #8fa0bf;
+  margin-left: auto;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-table th {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #8fa0bf;
+  padding: 7px 14px;
+  text-align: left;
+  border-bottom: 1px solid #2e3d5c;
+  background: #0e1924;
+}
+
+.price-table td {
+  font-size: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid #1a2640;
+  color: var(--text-2);
+  vertical-align: middle;
+}
+
+.price-table tr:last-child td {
+  border-bottom: none;
+}
+
+.price-table tr:hover td {
+  background: #1a2640;
+}
+
+.price-table .component-name {
+  font-weight: 600;
+  color: var(--text-1);
+  font-size: 12px;
+}
+
+.price-table .price-val {
+  color: #6fd672;
+  font-weight: 700;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.price-table .avail-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.avail-yes {
+  background: #0d3018;
+  color: #6fd672;
+  border: 1px solid #1e5c2a;
+}
+
+.avail-local {
+  background: #0d1e30;
+  color: #7ab4f5;
+  border: 1px solid #1e4060;
+}
+
+.price-table .source-tag {
+  font-size: 10px;
+  color: #6b8ab5;
+}
+
+.price-total-row td {
+  background: #1f1508 !important;
+  border-top: 1px solid #4a3408;
+  font-weight: 700;
+}
+
+.price-total-row .price-val {
+  font-size: 14px;
+  color: #f5c96a;
+}
+
 @media (max-width: 860px) {
   .g3 { grid-template-columns: 1fr 1fr; }
 }
@@ -318,12 +491,18 @@ body {
   .ctitle {
     font-size: 14px;
   }
+
+  .price-table th:nth-child(3),
+  .price-table td:nth-child(3) {
+    display: none;
+  }
 }
 </style>
 <div class="wrap">
 <div class="top">
   <div class="filters" id="fbar">
     <button class="pill on" data-f="all">All</button>
+    <button class="pill pill-featured" data-f="featured">✅ Selected</button>
     <button class="pill" data-f="env">Environment</button>
     <button class="pill" data-f="social">Society</button>
     <button class="pill" data-f="energy">Energy</button>
@@ -357,6 +536,7 @@ const P=[
   },
   {
     id:2,cat:"energy",sdg:"SDG 7",
+    featured:true,
     title:"Phantom load killer for household power strips",
     hook:"Most appliances consume power even when off ('phantom load'). A current sensor monitors each socket; a microcontroller cuts power to sockets drawing below a threshold. An LED panel shows live savings.",
     cs:"Current threshold logic, running average filter in code, serial monitor/LCD display of saved watt-hours",
@@ -364,7 +544,16 @@ const P=[
     impact:"Household phantom loads account for 5–10% of home electricity bills. Automatically cutting them saves energy with zero user effort.",
     unique:"Smart plugs exist commercially, but building one from scratch that works across a multi-socket strip with per-socket monitoring is uncommon as a student project.",
     parts:["Arduino Uno","ACS712 ×4","4-channel relay","LCD 16×2","Strip socket board"],
-    diff:2,cost:"₹900–1,400"
+    diff:2,cost:"₹900–1,400",
+    priceBreakdown:[
+      {component:"Arduino Uno R3",qty:"×1",price:"₹350","avail":"In Stock","source":"Robu.in"},
+      {component:"ACS712 Current Sensor (5A)",qty:"×4",price:"₹89 each → ₹356","avail":"In Stock","source":"Robocraze"},
+      {component:"4-Channel Relay Module (5V)",qty:"×1",price:"₹180","avail":"In Stock","source":"Robu.in"},
+      {component:"16×2 LCD Display",qty:"×1",price:"₹120","avail":"In Stock","source":"Robu.in"},
+      {component:"Strip Socket Board",qty:"×1",price:"₹150","avail":"Locally available","source":"Local market"},
+      {component:"Misc (wires, resistors, breadboard)",qty:"–",price:"₹80","avail":"In Stock","source":"Any store"},
+    ],
+    totalCost:"₹1,236"
   },
   {
     id:3,cat:"safety",sdg:"SDG 11",
@@ -412,6 +601,7 @@ const P=[
   },
   {
     id:7,cat:"safety",sdg:"SDG 13",
+    featured:true,
     title:"Flood early warning node using water level + LoRa radio",
     hook:"A float sensor and a capacitive water level sensor measure rising water at a river bank model. When a threshold is crossed, an Arduino transmits a wireless alert via LoRa to a receiver node 1–2 km away, which triggers an alarm.",
     cs:"LoRa packet framing, threshold alert state machine, receiver serial decoder, optional web alert via ESP32",
@@ -419,10 +609,21 @@ const P=[
     impact:"Rural flood warnings save lives. LoRa reaches kilometres with no SIM card or internet — ideal for remote areas with no connectivity.",
     unique:"Most student flood projects use Wi-Fi or GSM which need a network. Using LoRa for off-grid long-range alerting in a first-year project is uncommon and solves a real rural India problem.",
     parts:["Arduino Nano ×2","SX1278 LoRa ×2","HC-SR04","Float sensor","LiPo battery","Buzzer"],
-    diff:3,cost:"₹1,200–1,800"
+    diff:3,cost:"₹1,200–1,800",
+    priceBreakdown:[
+      {component:"Arduino Nano V3",qty:"×2",price:"₹220 each → ₹440","avail":"In Stock","source":"Robu.in"},
+      {component:"SX1278 LoRa Module (Ra-02, 433 MHz)",qty:"×2",price:"₹260 each → ₹520","avail":"In Stock","source":"Robokits India"},
+      {component:"HC-SR04 Ultrasonic Sensor",qty:"×1",price:"₹65","avail":"In Stock","source":"Robocraze"},
+      {component:"Float Switch Sensor",qty:"×1",price:"₹100","avail":"In Stock","source":"Robu.in"},
+      {component:"3.7V LiPo Battery (1200 mAh)",qty:"×1",price:"₹200","avail":"In Stock","source":"Robu.in"},
+      {component:"Buzzer + LED",qty:"–",price:"₹40","avail":"In Stock","source":"Any store"},
+      {component:"Misc (wires, logic level shifter, antenna)",qty:"–",price:"₹120","avail":"In Stock","source":"Robu.in"},
+    ],
+    totalCost:"₹1,485"
   },
   {
     id:8,cat:"env",sdg:"SDG 13",
+    featured:true,
     title:"Solar panel health monitor with dust degradation analysis",
     hook:"A light-dependent resistor and a voltage divider measure a small solar panel's open-circuit voltage and short-circuit current. A microcontroller tracks efficiency drop over days. A Python dashboard shows how dust accumulation degrades output.",
     cs:"Efficiency calculation (P=IV), time-series data storage in CSV, line graph plotting in Python/Excel, alert if efficiency drops below threshold",
@@ -430,7 +631,17 @@ const P=[
     impact:"Dirty solar panels lose 20–30% efficiency. A low-cost monitor tells users exactly when cleaning is needed, maximising renewable energy output.",
     unique:"Solar monitoring systems exist at industrial scale. A cheap embedded system that specifically correlates efficiency drop with time-since-cleaning for individual panels is novel at student level.",
     parts:["Arduino Uno","INA219 IC","LDR","DS3231 RTC","SD card","5V solar panel"],
-    diff:2,cost:"₹800–1,200"
+    diff:2,cost:"₹800–1,200",
+    priceBreakdown:[
+      {component:"Arduino Uno R3",qty:"×1",price:"₹350","avail":"In Stock","source":"Robu.in"},
+      {component:"INA219 Power Monitor Module",qty:"×1",price:"₹160","avail":"In Stock","source":"Robu.in"},
+      {component:"LDR (Light Dependent Resistor)",qty:"×1",price:"₹15","avail":"In Stock","source":"Local market"},
+      {component:"DS3231 RTC Module",qty:"×1",price:"₹149","avail":"In Stock","source":"Robocraze"},
+      {component:"MicroSD Card Module",qty:"×1",price:"₹100","avail":"In Stock","source":"Robu.in"},
+      {component:"5V Solar Panel (small, 0.5–1W)",qty:"×1",price:"₹280","avail":"In Stock","source":"Robu.in"},
+      {component:"Misc (wires, resistors, breadboard)",qty:"–",price:"₹60","avail":"In Stock","source":"Any store"},
+    ],
+    totalCost:"₹1,114"
   },
   {
     id:9,cat:"social",sdg:"SDG 11",
@@ -466,7 +677,11 @@ function stars(n,max=5){
 }
 
 function render(){
-  const filtered=af==="all"?P:P.filter(p=>p.cat===af);
+  let filtered;
+  if(af==="all") filtered=P;
+  else if(af==="featured") filtered=P.filter(p=>p.featured);
+  else filtered=P.filter(p=>p.cat===af);
+
   document.getElementById("cnt").textContent=`${filtered.length} idea${filtered.length!==1?"s":""}`;
   const list=document.getElementById("list");
   list.innerHTML="";
@@ -475,11 +690,13 @@ function render(){
     const sc={bg:"#E6F1FB",color:"#185FA5"};
     const card=document.createElement("div");
     card.dataset.id=String(p.id);
-    card.className="card"+(sid===p.id?" sel":"");
+    const isFeatured=!!p.featured;
+    card.className="card"+(isFeatured?" featured-card":"")+(sid===p.id?" sel":"");
     card.innerHTML=`
       <div class="crow">
         <div class="ctitle">${p.title}</div>
         <div class="brow">
+          ${isFeatured?`<span class="featured-badge">✅ Selected</span>`:""}
           <span class="b" style="background:${c.bg};color:${c.color}">${c.label}</span>
           <span class="b" style="background:${sc.bg};color:${sc.color}">${p.sdg}</span>
         </div>
@@ -505,6 +722,48 @@ function render(){
   }
 }
 
+function renderPriceTable(p){
+  if(!p.priceBreakdown) return "";
+  const rows=p.priceBreakdown.map(row=>`
+    <tr>
+      <td class="component-name">${row.component}</td>
+      <td style="color:var(--text-3);font-size:11px">${row.qty}</td>
+      <td class="price-val">${row.price}</td>
+      <td><span class="avail-chip ${row.avail==="Locally available"?"avail-local":"avail-yes"}">
+        ${row.avail==="Locally available"?"📍 Local":"✓ "+row.avail}
+      </span></td>
+      <td class="source-tag">${row.source}</td>
+    </tr>
+  `).join("");
+  return `
+    <div class="price-section">
+      <div class="price-section-header">
+        <span class="price-section-title">⭐ Real-time Component Prices</span>
+        <span class="price-updated">Updated April 2026 · India market</span>
+      </div>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Qty</th>
+            <th>Price (₹)</th>
+            <th>Availability</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+          <tr class="price-total-row">
+            <td class="component-name" colspan="2">Estimated Total</td>
+            <td class="price-val">${p.totalCost}</td>
+            <td colspan="2" style="font-size:10px;color:#8fa0bf">All components readily available online in India</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
 function renderDet(){
   const det=document.getElementById("det");
   if(!sid){det.classList.add("hidden");return}
@@ -512,7 +771,7 @@ function renderDet(){
   if(!p){det.classList.add("hidden");return}
   det.classList.remove("hidden");
   det.innerHTML=`
-    <div class="dtitle">${p.title}</div>
+    <div class="dtitle">${p.title}${p.featured?` <span class="featured-badge" style="vertical-align:middle">✅ Selected</span>`:`</span>`}</div>
     <div class="g3">
       <div class="db"><div class="dl">CS work involved</div><div class="dv">${p.cs}</div></div>
       <div class="db"><div class="dl">Electronics used</div><div class="dv">${p.elec}</div></div>
@@ -523,6 +782,7 @@ function renderDet(){
     <div class="parts">${p.parts.map(pt=>`<span class="part">${pt}</span>`).join("")}</div>
     <div class="diff-row"><span class="diff-label">Difficulty</span><div class="stars">${stars(p.diff)}</div><span style="font-size:11px;color:var(--color-text-tertiary);margin-left:4px">${DIFF_LABEL[p.diff]}</span></div>
     <div class="diff-row" style="margin-top:-4px"><span class="diff-label">Est. cost</span><span style="font-size:12px;color:var(--color-text-secondary)">${p.cost}</span></div>
+    ${renderPriceTable(p)}
   `;
 }
 
